@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admindex.css') }}">
+</head>
+
+<body>
+    <div class="admin-dashboard">
+        <h1>Admin Dashboard</h1>
+        <div class="admin-actions" style="text-align: center;">
+            <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+            <button style="margin: 10px 0 ;" id="dataset-file" onclick="uploadDataset()">Upload dataset!</button>
+        </div>
+        <div class="admin-actions" style="text-align: center;">
+            <button style="margin: 10px 0 ;" id="download-dataset" onclick="downloadDataset()">Download
+                dataset!</button>
+        </div>
+        <button id="logout"
+            style="margin-top: 10%; border-radius: 5px; background-color: #ff5733; color: #ffffff;">Logout</button>
+    </div>
+
+    <!-- ... (your existing HTML code) ... -->
+
+    <script src="{{ url_for('static', filename='adminscript.js') }}"></script>
+    <script>
+        function uploadDataset() {
+            document.getElementById('csvFileInput').click();
+        }
+
+        function handleFileUpload() {
+            // You can perform additional actions when a file is selected/uploaded
+            // For now, let's display a success message for a few seconds
+            /*var successMessage = document.createElement("div");
+            successMessage.innerText = "Dataset uploaded successfully!";
+            successMessage.style.color = "green";
+            document.body.appendChild(successMessage);
+
+            setTimeout(function () {
+                successMessage.remove();
+            }, 3000);*/
+            alert("Dataset uploaded successfully!");
+        }
+
+        function downloadDataset() {
+            // For simplicity, let's create a sample file content
+            var fileContent = "data:text/plain;base64,NDQgCjUxIAoyNyAKMTIwIAoxMDEgCjk5IAo3MSAKNTUgCjU1IAo2NiAKNzcgCjExNSAKMTE1IAozMSAKMTA4IAo1NiAKMTM2IAoxMzIgCjg1IAo1NiAKMTggCjExOSAKNzggCjkgCjU4IAoxMSAKODggCjE0NCAKMTI0IAo4OSAKNzkgCjU1IAo3MSAKNjUgCjg3IAoxMzcgCjE0NSAKMjIgCjggCjQxIAoxMzEgCjExNSAKMTI4IAo2OSAKMTExIAo3IAoxMzcgCjU1IAoxMzUgCjExIAo3OCAKMTIwIAo4NyAKODcgCjU1IAo5MyAKODggCjQwIAo0OSAKMTI4IAoxMjkgCjU4IAoxMTcgCjI4IAoxMTUgCjg3IAo5MiAKMTAzIAoxMDAgCjYzIAozNSAKNDUgCjk5IAoxMTcgCjQ1IAoyNyAKODYgCjIwIAoxOCAKMTMzIAoxNSAKNiAKMTQ1IAoxMDQgCjU2IAoyNSAKNjggCjE0NCAKNDEgCjUxIAo4MSAKMTQgCjY3IAoxMCAKMTI3IAoxMTMgCjEyMyAKMTcgCjggCjI4IAo=";
+            var fileName = "sample_dataset.csv";
+
+            // Create a Blob containing the file content
+            var blob = new Blob([fileContent], {
+                type: "text/csv"
+            });
+
+            // Create a link element and trigger the download
+            var link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
+    </script>
+</body>
+
+</html>
